@@ -24,11 +24,6 @@ jobs:
           fail-build: false
           severity-cutoff: high
           acs-report-enable: true
-      - name: Download vulnerability report
-        uses: actions/download-artifact@v2
-        with:
-          name: grype-results
-          sarif_file: reports/grype-results.json
       - name: Build, unit tests and integration tests
         run: |
           chmod +x gradlew
