@@ -16,6 +16,7 @@ repositories {
 }
 
 extra["springCloudVersion"] = "2022.0.1"
+extra["testcontainersVersion"] = "1.17.3"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -24,13 +25,19 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.yaml:snakeyaml:2.0")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.retry:spring-retry")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
+	testImplementation("org.testcontainers:postgresql")
 }
 
 dependencyManagement {
 	imports {
 		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+		mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
 	}
 }
 

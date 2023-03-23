@@ -24,7 +24,7 @@ class BookController(private val bookService: BookService) {
     }
 
     @GetMapping("/{isbn}")
-    fun getByIsbn(@PathVariable isbn: String): Book {
+    fun getByIsbn(@PathVariable isbn: String): Book? {
         return bookService.viewBookDetails(isbn)
     }
 
@@ -36,7 +36,7 @@ class BookController(private val bookService: BookService) {
 
     @DeleteMapping("/{isbn}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable isbn: String): Unit {
+    fun delete(@PathVariable isbn: String): Boolean {
         return bookService.removeBookFromCatalog(isbn)
     }
 
