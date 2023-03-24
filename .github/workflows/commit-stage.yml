@@ -4,15 +4,6 @@ jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-22.04
-    services:
-      postgres:
-        image: postgres:14.4
-        ports:
-          - 5432:5432
-        environment:
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: polardb_catalog
     permissions:
       contents: read
       security-events: write
