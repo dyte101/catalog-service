@@ -42,11 +42,12 @@ data class Book(
     var version: Int
 ) {
   constructor(): this(0, "", "", "", 0.0, "", null, null, 0){}
-    constructor(isbn: String, title: String, author: String, price: Double) : this() {
+    constructor(isbn: String, title: String, author: String, price: Double, publisher: String) : this() {
         this.isbn = isbn
         this.title = title
         this.author = author
         this.price = price
+        this.publisher = publisher
     }
 
 }

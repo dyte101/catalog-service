@@ -24,7 +24,7 @@ class BookValidationTests {
     @Test
     fun `should pass when all fields are correct`() {
         // given
-        var book = Book("1234567890", "Title", "Author", 9.90)
+        var book = Book("1234567890", "Title", "Author", 9.90, "Publisher")
 
         // when
         var violations: Set<ConstraintViolation<Book>> = validator.validate(book)
@@ -36,7 +36,7 @@ class BookValidationTests {
     @Test
     fun `should fail when isbn is incorrect`() {
         // given
-        var book = Book("a234567890", "Title", "Author", 9.90)
+        var book = Book("a234567890", "Title", "Author", 9.90, "Publisher")
 
         // when
         var violations: Set<ConstraintViolation<Book>> = validator.validate(book)

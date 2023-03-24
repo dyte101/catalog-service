@@ -17,7 +17,7 @@ class BookJsonTests {
     @Throws(Exception::class)
     fun `should test if the data is serialized`() {
         // given / when
-        var book = Book("1234567890", "Title", "Author", 9.90)
+        var book = Book("1234567890", "Title", "Author", 9.90, "Publisher")
         var jsonContent = json.write(book)
 
         // then
@@ -29,6 +29,8 @@ class BookJsonTests {
             .isEqualTo(book.author)
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price")
             .isEqualTo(book.price)
+        assertThat(jsonContent).extractingJsonPathStringValue("@.publisher")
+            .isEqualTo(book.publisher)
     }
 
     @Test
@@ -40,13 +42,14 @@ class BookJsonTests {
                 "isbn": "1234567890",
                 "title": "Title",
                 "author": "Author",
-                "price": 9.90
+                "price": 9.90,
+                "publisher": "Publisher"
             }
         """.trimIndent()
 
         // then
         assertThat(json.parse(content))
             .usingRecursiveComparison()
-            .isEqualTo(Book("1234567890", "Title", "Author", 9.90))
+            .isEqualTo(Book("1234567890", "Title", "Author", 9.90, "Publisher"))
     }
 }

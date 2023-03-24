@@ -26,8 +26,8 @@ class BookRepositoryJdbcTests {
 
     @Test
     fun findAllBooks() {
-        var book1 = Book("1234561235", "Title", "Author", 12.90)
-        var book2 = Book("1234561236", "Another Title", "Author", 12.90)
+        var book1 = Book("1234561235", "Title", "Author", 12.90, "Publisher")
+        var book2 = Book("1234561236", "Another Title", "Author", 12.90, "Publisher")
         jdbcAggregateTemplate.insert(book1)
         jdbcAggregateTemplate.insert(book2)
 
@@ -41,7 +41,7 @@ class BookRepositoryJdbcTests {
     @Test
     fun findBookByIsbnWhenExisting() {
         var bookIsbn = "1234561237"
-        var book = Book(bookIsbn, "Title", "Author", 12.09)
+        var book = Book(bookIsbn, "Title", "Author", 12.09, "Publisher")
         jdbcAggregateTemplate.insert(book)
         var actualBook: Optional<Book>? = bookRepository.findByIsbn(bookIsbn)
 
@@ -58,7 +58,7 @@ class BookRepositoryJdbcTests {
     @Test
     fun existsByIsbnWhenExisting() {
         var bookIsbn = "1234561239"
-        var bookToCreate = Book(bookIsbn, "Title", "Author", 12.90)
+        var bookToCreate = Book(bookIsbn, "Title", "Author", 12.90, "Publisher")
         jdbcAggregateTemplate.insert(bookToCreate)
 
         var existing: Boolean = bookRepository.existsByIsbn(bookIsbn)
@@ -75,7 +75,7 @@ class BookRepositoryJdbcTests {
     @Test
     fun deleteByIsbn() {
         var bookIsbn = "1234561241"
-        var bookToCreate = Book(bookIsbn, "Title", "Author", 12.90)
+        var bookToCreate = Book(bookIsbn, "Title", "Author", 12.90, "Publisher")
         var persistedBook = jdbcAggregateTemplate.insert(bookToCreate)
 
         var result = (bookRepository.deleteByIsbn(persistedBook.isbn))

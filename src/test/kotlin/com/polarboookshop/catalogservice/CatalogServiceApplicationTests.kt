@@ -21,7 +21,7 @@ class CatalogServiceApplicationTests {
 
 	@Test
 	fun `when post request then book created`() {
-		val expectedBook = Book("1231231231", "Title", "Author", 9.90)
+		val expectedBook = Book("1231231231", "Title", "Author", 9.90, "Publisher")
 		webTestClient.post()
 			.uri("/books")
 			.contentType(MediaType.APPLICATION_JSON)
