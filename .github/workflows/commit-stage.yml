@@ -1,5 +1,6 @@
 name: Commit Stage
 on: push
+
 jobs:
   build:
     name: Build and Test
@@ -8,6 +9,13 @@ jobs:
       contents: read
       security-events: write
     steps:
+      - name: Connect to PostgresSQL
+        uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '14.4'
+          postgresql db: 'polardb_catalog'
+          postgresql user: 'user'
+          postgresql password: 'password'
       - name: Checkout source code
         uses: actions/checkout@v3
       - name: Set up JDK
