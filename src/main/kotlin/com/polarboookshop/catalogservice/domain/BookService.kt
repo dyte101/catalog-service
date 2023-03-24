@@ -44,6 +44,7 @@ class BookService(var bookRepository: BookRepository) {
             bookToUpdate.get().title = book.title
             bookToUpdate.get().author = book.author
             bookToUpdate.get().price = book.price
+            bookToUpdate.get().publisher = book.publisher
             bookToUpdate.get().createdDate = bookToUpdate.get().createdDate
             bookToUpdate.get().lastModifiedDate = bookToUpdate.get().lastModifiedDate
             bookToUpdate.get().version = bookToUpdate.get().version

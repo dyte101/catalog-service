@@ -30,6 +30,8 @@ data class Book(
     @field:Positive(message = "The book price must be greater than zero.")
     var price: Double,
 
+    var publisher: String,
+
     @CreatedDate
     var createdDate: Instant?,
 
@@ -39,7 +41,7 @@ data class Book(
     @Version
     var version: Int
 ) {
-  constructor(): this(0, "", "", "", 0.0, null, null, 0){}
+  constructor(): this(0, "", "", "", 0.0, "", null, null, 0){}
     constructor(isbn: String, title: String, author: String, price: Double) : this() {
         this.isbn = isbn
         this.title = title
