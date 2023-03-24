@@ -8,9 +8,6 @@ server:
       min-spare: 5
 
 spring:
-  sql:
-    init:
-      mode: always
   datasource:
     username: user
     password: password
