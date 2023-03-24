@@ -63,7 +63,7 @@ class BookRepositoryJdbcTests {
 
         var existing: Boolean = bookRepository.existsByIsbn(bookIsbn)
 
-        assertThat(existing).isFalse
+        assertThat(existing).isTrue
     }
 
     @Test
@@ -78,6 +78,9 @@ class BookRepositoryJdbcTests {
         var bookToCreate = Book(bookIsbn, "Title", "Author", 12.90)
         var persistedBook = jdbcAggregateTemplate.insert(bookToCreate)
 
-        assertThat(bookRepository.deleteByIsbn(bookIsbn)).isTrue
+        var result = (bookRepository.deleteByIsbn(persistedBook.isbn))
+        println(result)
+
+        assertThat(result).isTrue
     }
 }

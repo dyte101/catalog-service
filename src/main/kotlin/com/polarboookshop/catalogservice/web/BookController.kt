@@ -41,7 +41,7 @@ class BookController(private val bookService: BookService) {
     }
 
     @PutMapping("/{isbn}")
-    fun put(@PathVariable isbn: String,@Valid @RequestBody book: Book) : Book {
+    fun put(@PathVariable isbn: String, @Valid @RequestBody book: Book) : Book {
         return bookService.editBookDetails(isbn, book)
     }
 }
