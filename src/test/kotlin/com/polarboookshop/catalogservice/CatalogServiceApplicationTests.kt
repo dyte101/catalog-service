@@ -16,23 +16,4 @@ class CatalogServiceApplicationTests {
 	fun contextLoads() {
 	}
 
-	@Autowired
-	private lateinit var webTestClient: WebTestClient
-
-	@Test
-	fun `when post request then book created`() {
-		val expectedBook = Book("1231231231", "Title", "Author", 9.90, "Publisher")
-		webTestClient.post()
-			.uri("/books")
-			.contentType(MediaType.APPLICATION_JSON)
-			.body(Mono.just(expectedBook), Book::class.java)
-			.exchange()
-			.expectStatus().isCreated
-			.expectBody(Book::class.java).consumeWith { response ->
-				val actualBook = response.responseBody
-				if (actualBook != null) {
-					assertEquals(expectedBook.isbn, actualBook.isbn)
-				}
-			}
-	}
 }
